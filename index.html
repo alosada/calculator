@@ -54,14 +54,12 @@
    	window.onload = function(){
    	  window.calculator = new Calculator();
    	  window.addEventListener('keydown', event => {
-   	  	console.log(event.key)
-   	    // window.calculator.input(event.key);
+   	    window.calculator.input(event.key);
    	  })
    	}
    	function calcButton(){
    	  let value = this.event.target.innerText;
-   	  console.log(value)
-   	  // window.calculator.input(value);
+   	  window.calculator.input(value);
    	}
    </script>
 </body>

@@ -26,7 +26,8 @@ describe("Calculator", function() {
 
   it("takes an operator input", function(){
    	let calculator = new Calculator();
-  	calculator.input('42')
+  	calculator.input('4')
+  	calculator.input('2')
   	expect(calculator.operator).toEqual(null)
   	calculator.input('*')
   	expect(calculator.operator).toEqual('*')
@@ -35,29 +36,30 @@ describe("Calculator", function() {
   it("takes an input after operator and edits number1", function(){
   	let calculator = new Calculator();
   	calculator.input('*')
-  	calculator.input('42')
+  	calculator.input('4')
+  	calculator.input('2')
   	expect(calculator.number1).toEqual('42')
   })
 
   it("add", function(){
   	let calculator = new Calculator();
-  	calculator.input('21')
+  	calculator.number0 = '21'
   	calculator.input('+')
-  	calculator.input('21')
+  	calculator.number1 = '21'
   	expect(calculator.calculate()).toEqual(42)
   })
 
   it("substract", function(){
   	let calculator = new Calculator();
-  	calculator.input('63')
+  	calculator.number0 = '63'
   	calculator.input('-')
-  	calculator.input('21')
+  	calculator.number1 = '21'
   	expect(calculator.calculate()).toEqual(42)
   })
 
   it("multiply", function(){
   	let calculator = new Calculator();
-  	calculator.input('21')
+  	calculator.number0 = '21'
   	calculator.input('*')
   	calculator.input('2')
   	expect(calculator.calculate()).toEqual(42)
@@ -65,7 +67,7 @@ describe("Calculator", function() {
 
   it("divide", function(){
   	let calculator = new Calculator();
-  	calculator.input('210')
+  	calculator.number0 = '210'
   	calculator.input('/')
   	calculator.input('5')
   	expect(calculator.calculate()).toEqual(42)
@@ -73,7 +75,7 @@ describe("Calculator", function() {
 
   it("divide by 0 creates error", function(){
   	let calculator = new Calculator();
-  	calculator.input('210')
+  	calculator.number0 = '210'
   	calculator.input('/')
   	calculator.input('0')
   	expect(calculator.calculate()).toEqual("can't divide by 0")
@@ -81,20 +83,32 @@ describe("Calculator", function() {
 
   it("handles consecutive operations", function(){
   	let calculator = new Calculator();
-  	calculator.input('21')
-  	calculator.input('*')
-  	calculator.input('2')
-  })
-
-  it("clears", function(){
-  	let calculator = new Calculator();
-  	calculator.input('105')
+  	calculator.number0 = '105'
   	calculator.input('/')
   	calculator.input('5')
   	expect(calculator.calculate()).toEqual(21)
   	calculator.input('*')
   	calculator.input('2')
   	expect(calculator.calculate()).toEqual(42)
+  })
+
+  it("clears", function(){
+  	let calculator = new Calculator();
+  	calculator.input('1')
+  	calculator.input('*')
+  	expect(calculator.number0).toEqual('1')
+  	expect(calculator.number1).toEqual('0')
+  	expect(calculator.operator).toEqual('*')
+  	calculator.input('c')
+  	expect(calculator.number0).toEqual('0')
+  	expect(calculator.number1).toEqual('0')
+  	expect(calculator.operator).toEqual(null)
+  })
+
+  it("ignores irrelevant characters", function(){
+  	let calculator = new Calculator();
+  	calculator.input('a')
+  	expect(calculator.number0).toEqual('0')
   })
 
 })

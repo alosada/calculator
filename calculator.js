@@ -3,28 +3,43 @@ class Calculator {
     this.number0 = '0';
     this.number1 = '0';
     this.operator = null;
+    this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
+    this.allowedOperators = ['c', 'C', '/','*','-','+','='];
+  }
+
+  get allowedCharacters(){
+  	return this.allowedNumbers.concat(this.allowedOperators);
   }
 
   input(value) {
+  	if(!this.goodInput(value)){
+      return console.log( 'bad input ' + value )
+  	}
     if( this.isOperator(value) ) {
-      return this.handleOperator(value);
+      this.handleOperator(value);
     } else {
-      return this.handleValue(value);
+      this.handleValue(value);
     }
   }
 
+  goodInput(value){
+  	return this.allowedCharacters.includes(value);
+  }
+
   isOperator(value) {
-    return ['/','*','-','+','='].includes(value);
+    return this.allowedOperators.includes(value);
   }
 
   handleOperator(value) {
   	if(value === '=') {
       this.resolveEqual();
+  	} else if(['c','C'].includes(value)){
+      this.clear();
   	} else {
-  		if(this.operator !== null){
-  		  this.number0 = String(this.calculate());
-  		  this.number1 = '0';
-  		}
+  	  if(this.operator !== null){
+  	    this.number0 = String(this.calculate());
+        this.number1 = '0';
+  	  }
       this.operator = value;
   	}
   }
@@ -40,9 +55,9 @@ class Calculator {
 
   setNumberSlot() {
     if(this.operator === null) {
-            return 'number0';
+      return 'number0';
     } else {
-            return 'number1';
+      return 'number1';
     }
   }
 
@@ -67,9 +82,9 @@ class Calculator {
   }
 
   clear(){
+    this.operator = null;
   	this.number0 = '0';
     this.number1 = '0';
-    this.operator = null;
   }
 
   resolveEqual(){
