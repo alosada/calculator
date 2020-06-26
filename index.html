@@ -1,40 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<title>Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <link rel="stylesheet" href="https://normalize-css.googlecode.com/svn/trunk/normalize.css">
+  <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
+  <div class='header'>
+    <h2>Calculator</h2>
+    <p>I'm not ugly, I'm minimalistic.</p>
+  </div>
   <div>
-  	<table>
-  		<tr>
-  			<td colspan="3">input</td>
-  			<td>del</td>
-  		</tr>
-  		<tr>
-  			<td>7</td>
-  			<td>8</td>
-  			<td>9</td>
-  			<td>/</td>
-  		</tr>
-  		<tr>
-  			<td>4</td>
-  			<td>5</td>
-  			<td>6</td>
-  			<td>*</td>
-  		</tr>
-  		<tr>
-  			<td>3</td>
-  			<td>2</td>
-  			<td>1</td>
-  			<td>-</td>
-  		</tr>
-  		<tr>
-  			<td>0</td>
-  			<td>.</td>
-  			<td>=</td>
-  			<td>=</td>
-  		</tr>
-  	</table>
+    <div id='calculator'>
+      <table>
+        <tr>
+          <td colspan="3"><input type="text" id="display"></td>
+          <td><button type="button">C</button></td>
+        </tr>
+        <tr>
+          <td><button type="button">7</button></td>
+          <td><button type="button">8</button></td>
+          <td><button type="button">9</button></td>
+          <td><button type="button">/</button></td>
+        </tr>
+        <tr>
+          <td><button type="button">4</button></td>
+          <td><button type="button">5</button></td>
+          <td><button type="button">6</button></td>
+          <td><button type="button">*</button></td>
+        </tr>
+        <tr>
+          <td><button type="button">3</button></td>
+          <td><button type="button">2</button></td>
+          <td><button type="button">1</button></td>
+          <td><button type="button">-</button></td>
+        </tr>
+        <tr>
+          <td><button type="button">0</button></td>
+          <td><button type="button">.</button></td>
+          <td><button type="button">=</button></td>
+          <td><button type="button">+</button></td>
+        </tr>
+      </table>
+    </div>
   </div>
    <script src="calculator.js"></script>
 </body>

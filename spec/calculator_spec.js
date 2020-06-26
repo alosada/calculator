@@ -71,18 +71,30 @@ describe("Calculator", function() {
   	expect(calculator.calculate()).toEqual(42)
   })
 
-  it("clears", function(){
+  it("divide by 0 creates error", function(){
   	let calculator = new Calculator();
   	calculator.input('210')
   	calculator.input('/')
+  	calculator.input('0')
+  	expect(calculator.calculate()).toEqual("can't divide by 0")
+  })
+
+  it("handles consecutive operations", function(){
+  	let calculator = new Calculator();
+  	calculator.input('21')
+  	calculator.input('*')
+  	calculator.input('2')
+  })
+
+  it("clears", function(){
+  	let calculator = new Calculator();
+  	calculator.input('105')
+  	calculator.input('/')
   	calculator.input('5')
-  	expect(calculator.number0).toEqual('210')
-  	expect(calculator.number1).toEqual('5')
-  	expect(calculator.operator).toEqual('/')
-  	calculator.clear()
-  	expect(calculator.number0).toEqual('0')
-  	expect(calculator.number1).toEqual('0')
-  	expect(calculator.operator).toEqual(null)
+  	expect(calculator.calculate()).toEqual(21)
+  	calculator.input('*')
+  	calculator.input('2')
+  	expect(calculator.calculate()).toEqual(42)
   })
 
 })

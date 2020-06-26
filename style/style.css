@@ -1,0 +1,12 @@
+body {
+  background-color: lightgray;
+}
+
+.header{
+  text-align: center;
+}
+
+#calculator table{
+  margin-left: auto;
+  margin-right: auto;
+}

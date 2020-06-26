@@ -14,13 +14,17 @@ class Calculator {
   }
 
   isOperator(value) {
-    return ['/','*','-','+', '='].includes(value);
+    return ['/','*','-','+','='].includes(value);
   }
 
   handleOperator(value) {
   	if(value === '=') {
       this.resolveEqual();
   	} else {
+  		if(this.operator !== null){
+  		  this.number0 = String(this.calculate());
+  		  this.number1 = '0';
+  		}
       this.operator = value;
   	}
   }
@@ -46,6 +50,7 @@ class Calculator {
     switch(this.operator) {
       case '/':
         if(this.number1 === '0'){
+          this.clear();
           return "can't divide by 0";
         } else {
           return Number(this.number0)/Number(this.number1);
