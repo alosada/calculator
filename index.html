@@ -10,42 +10,59 @@
 <body>
   <div class='header'>
     <h2>Calculator</h2>
-    <p>I'm not ugly, I'm minimalistic.</p>
+    <p>I'm not ugly, I'm <u>minimalistic</u>.</p>
   </div>
+  <br>
   <div>
     <div id='calculator'>
       <table>
         <tr>
-          <td colspan="3"><input type="text" id="display"></td>
-          <td><button type="button">C</button></td>
+          <td colspan="3">
+          	<input type="text" id="display" disabled="disabled">
+          </td>
+          <td><button onclick="calcButton()">C</button></td>
         </tr>
         <tr>
-          <td><button type="button">7</button></td>
-          <td><button type="button">8</button></td>
-          <td><button type="button">9</button></td>
-          <td><button type="button">/</button></td>
+          <td><button onclick="calcButton()">7</button></td>
+          <td><button onclick="calcButton()">8</button></td>
+          <td><button onclick="calcButton()">9</button></td>
+          <td><button onclick="calcButton()">/</button></td>
         </tr>
         <tr>
-          <td><button type="button">4</button></td>
-          <td><button type="button">5</button></td>
-          <td><button type="button">6</button></td>
-          <td><button type="button">*</button></td>
+          <td><button onclick="calcButton()">4</button></td>
+          <td><button onclick="calcButton()">5</button></td>
+          <td><button onclick="calcButton()">6</button></td>
+          <td><button onclick="calcButton()">*</button></td>
         </tr>
         <tr>
-          <td><button type="button">3</button></td>
-          <td><button type="button">2</button></td>
-          <td><button type="button">1</button></td>
-          <td><button type="button">-</button></td>
+          <td><button onclick="calcButton()">3</button></td>
+          <td><button onclick="calcButton()">2</button></td>
+          <td><button onclick="calcButton()">1</button></td>
+          <td><button onclick="calcButton()">-</button></td>
         </tr>
         <tr>
-          <td><button type="button">0</button></td>
-          <td><button type="button">.</button></td>
-          <td><button type="button">=</button></td>
-          <td><button type="button">+</button></td>
+          <td><button onclick="calcButton()">0</button></td>
+          <td><button onclick="calcButton()">.</button></td>
+          <td><button onclick="calcButton()">=</button></td>
+          <td><button onclick="calcButton()">+</button></td>
         </tr>
       </table>
     </div>
   </div>
    <script src="calculator.js"></script>
+   <script type="text/javascript">
+   	window.onload = function(){
+   	  window.calculator = new Calculator();
+   	  window.addEventListener('keydown', event => {
+   	  	console.log(event.key)
+   	    // window.calculator.input(event.key);
+   	  })
+   	}
+   	function calcButton(){
+   	  let value = this.event.target.innerText;
+   	  console.log(value)
+   	  // window.calculator.input(value);
+   	}
+   </script>
 </body>
 </html>
