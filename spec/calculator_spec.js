@@ -71,4 +71,18 @@ describe("Calculator", function() {
   	expect(calculator.calculate()).toEqual(42)
   })
 
+  it("clears", function(){
+  	let calculator = new Calculator();
+  	calculator.input('210')
+  	calculator.input('/')
+  	calculator.input('5')
+  	expect(calculator.number0).toEqual('210')
+  	expect(calculator.number1).toEqual('5')
+  	expect(calculator.operator).toEqual('/')
+  	calculator.clear()
+  	expect(calculator.number0).toEqual('0')
+  	expect(calculator.number1).toEqual('0')
+  	expect(calculator.operator).toEqual(null)
+  })
+
 })
