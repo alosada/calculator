@@ -20,31 +20,43 @@
           <td colspan="3">
           	<input type="text" id="display" disabled="disabled">
           </td>
-          <td><button onclick="calcButton()">C</button></td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>C</button>
+          </td>
         </tr>
         <tr>
           <td><button onclick="calcButton()">7</button></td>
           <td><button onclick="calcButton()">8</button></td>
           <td><button onclick="calcButton()">9</button></td>
-          <td><button onclick="calcButton()">/</button></td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>/</button>
+          </td>
         </tr>
         <tr>
           <td><button onclick="calcButton()">4</button></td>
           <td><button onclick="calcButton()">5</button></td>
           <td><button onclick="calcButton()">6</button></td>
-          <td><button onclick="calcButton()">*</button></td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>*</button>
+          </td>
         </tr>
         <tr>
           <td><button onclick="calcButton()">3</button></td>
           <td><button onclick="calcButton()">2</button></td>
           <td><button onclick="calcButton()">1</button></td>
-          <td><button onclick="calcButton()">-</button></td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>-</button>
+          </td>
         </tr>
         <tr>
           <td><button onclick="calcButton()">0</button></td>
           <td><button onclick="calcButton()">.</button></td>
-          <td><button onclick="calcButton()">=</button></td>
-          <td><button onclick="calcButton()">+</button></td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>=</button>
+          </td>
+          <td>
+          	<button onclick="calcButton()" class='operator'>+</button>
+          </td>
         </tr>
       </table>
     </div>
@@ -52,7 +64,8 @@
    <script src="calculator.js"></script>
    <script type="text/javascript">
    	window.onload = function(){
-   	  window.calculator = new Calculator();
+   	  let display = document.querySelector('#calculator #display')
+   	  window.calculator = new Calculator(display);
    	  window.addEventListener('keydown', event => {
    	    window.calculator.input(event.key);
    	  })
