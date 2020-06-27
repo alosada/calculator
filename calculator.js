@@ -5,10 +5,15 @@ class Calculator {
     this.operator = null;
     this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
     this.allowedOperators = ['c', 'C', '/','*','-','+','='];
+    this.updateDisplay('0');
   }
 
   get allowedCharacters(){
   	return this.allowedNumbers.concat(this.allowedOperators);
+  }
+
+  get display(){
+  	return document.querySelector('#calculator #display')
   }
 
   input(value) {
@@ -34,11 +39,13 @@ class Calculator {
   	if(value === '=') {
       this.resolveEqual();
   	} else if(['c','C'].includes(value)){
+  	  this.updateDisplay('0');
       this.clear();
   	} else {
   	  if(this.operator !== null){
   	    this.number0 = String(this.calculate());
         this.number1 = '0';
+        this.updateDisplay('0')
   	  }
       this.operator = value;
   	}
@@ -51,6 +58,7 @@ class Calculator {
     } else {
       this[number] += value;
     }
+    this.updateDisplay(this[number])
   }
 
   setNumberSlot() {
@@ -88,10 +96,14 @@ class Calculator {
   }
 
   resolveEqual(){
-  	let result = this.calculate();
+  	let result = String(this.calculate());
+  	this.updateDisplay(result);
+  	this.clear();
   }
 
+  updateDisplay(value){
+    this.display.value = value;
+  }
 }
-
 
 module.exports = Calculator
