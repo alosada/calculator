@@ -4,7 +4,7 @@ class Calculator {
     this.param1 = null;
     this.operator = null;
     this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
-    this.allowedOperators = ['c', 'C', '/','*','-','+','='];
+    this.allowedOperators = ['c', 'C', '/','*','-','+','=', 'Enter'];
     if(display){
       this.display = display;
       this.updateDisplay('0');
@@ -47,7 +47,7 @@ class Calculator {
   }
 
   handleOperator(operator) {
-  	if(operator === '=') {
+  	if(operator === '=' || operator === 'Enter') {
       return this.resolveEqual();
   	} else if(['c','C'].includes(operator)){
   	  this.updateDisplay('0');
@@ -56,7 +56,7 @@ class Calculator {
   	  if(this.operator && this.param1){
   	    this.param0 = String(this.calculate());
         this.param1 = '0';
-        this.updateDisplay('0')
+        this.updateDisplay(this.param0)
   	  }
       this.operator = operator;
   	}
