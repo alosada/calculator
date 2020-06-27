@@ -144,4 +144,16 @@ describe("Calculator", function() {
   	expect(calculator.operator).toEqual(null);
   })
 
+  it("handles Enter", function(){
+  	let calculator = new Calculator();
+  	calculator.input('3');
+  	calculator.input('3');
+  	calculator.input('+');
+  	calculator.input('9');
+    expect(calculator.input('Enter')).toEqual(42);
+    expect(calculator.param0).toEqual('0');
+  	expect(calculator.param1).toEqual(null);
+  	expect(calculator.operator).toEqual(null);
+  })
+
 })
