@@ -1,7 +1,7 @@
 class Calculator {
   constructor(display) {
-    this.number0 = '0';
-    this.number1 = null;
+    this.param0 = '0';
+    this.param1 = null;
     this.operator = null;
     this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
     this.allowedOperators = ['c', 'C', '/','*','-','+','='];
@@ -15,14 +15,26 @@ class Calculator {
   	return this.allowedNumbers.concat(this.allowedOperators);
   }
 
+  get number0(){
+  	return this.paramToNumber(this.param0)
+  }
+
+  get number1(){
+  	return this.paramToNumber(this.param1)
+  }
+
+  paramToNumber(param){
+  	return Number(param)
+  }
+
   input(value) {
   	if(!this.goodInput(value)){
       return 'bad input ' + value
   	}
     if( this.isOperator(value) ) {
-      this.handleOperator(value);
+      return this.handleOperator(value);
     } else {
-      this.handleValue(value);
+      return this.handleValue(value);
     }
   }
 
@@ -34,20 +46,21 @@ class Calculator {
     return this.allowedOperators.includes(value);
   }
 
-  handleOperator(value) {
-  	if(value === '=') {
-      this.resolveEqual();
-  	} else if(['c','C'].includes(value)){
+  handleOperator(operator) {
+  	if(operator === '=') {
+      return this.resolveEqual();
+  	} else if(['c','C'].includes(operator)){
   	  this.updateDisplay('0');
       this.clear();
   	} else {
-  	  if(this.operator && this.number1){
-  	    this.number0 = String(this.calculate());
-        this.number1 = '0';
+  	  if(this.operator && this.param1){
+  	    this.param0 = String(this.calculate());
+        this.param1 = '0';
         this.updateDisplay('0')
   	  }
-      this.operator = value;
+      this.operator = operator;
   	}
+  	return operator;
   }
 
   handleValue(value) {
@@ -58,47 +71,49 @@ class Calculator {
     } else {
       this[number] += value;
     }
-    this.updateDisplay(this[number])
+    this.updateDisplay(this[number]);
+    return value;
   }
 
   setNumberSlot() {
     if(this.operator === null) {
-      return 'number0';
+      return 'param0';
     } else {
-      return 'number1';
+      return 'param1';
     }
   }
 
   calculate() {
     switch(this.operator) {
       case '/':
-        if(this.number1 === '0'){
+        if(this.param1 === '0'){
           this.clear();
           return "can't divide by 0";
         } else {
-          return Number(this.number0)/Number(this.number1);
+          return this.number0/this.number1;
         }
       case '*':
-        return Number(this.number0)*Number(this.number1);
+        return this.number0*this.number1;
       case '-':
-        return Number(this.number0)-Number(this.number1);
+        return this.number0-this.number1;
       case '+':
-        return Number(this.number0)+Number(this.number1);
+        return this.number0+this.number1;
       default:
         return 'Error';
     }
   }
 
   clear(){
-  	this.number0 = '0';
-    this.number1 = null;
+  	this.param0 = '0';
+    this.param1 = null;
     this.operator = null;
   }
 
   resolveEqual(){
-  	let result = String(this.calculate());
+  	let result = this.calculate();
   	this.updateDisplay(result);
   	this.clear();
+  	return result;
   }
 
   updateDisplay(value){
