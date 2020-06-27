@@ -1,7 +1,7 @@
 class Calculator {
   constructor(display) {
     this.number0 = '0';
-    this.number1 = '0';
+    this.number1 = null;
     this.operator = null;
     this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
     this.allowedOperators = ['c', 'C', '/','*','-','+','='];
@@ -41,7 +41,7 @@ class Calculator {
   	  this.updateDisplay('0');
       this.clear();
   	} else {
-  	  if(this.operator !== null){
+  	  if(this.operator && this.number1){
   	    this.number0 = String(this.calculate());
         this.number1 = '0';
         this.updateDisplay('0')
@@ -52,7 +52,8 @@ class Calculator {
 
   handleValue(value) {
     let number = this.setNumberSlot()
-    if(this[number] === '0' && value !== '.') {
+    let nullOrZero = this[number] === '0' || this[number] === null
+    if(nullOrZero && value !== '.') {
       this[number] = value;
     } else {
       this[number] += value;
@@ -89,9 +90,9 @@ class Calculator {
   }
 
   clear(){
-    this.operator = null;
   	this.number0 = '0';
-    this.number1 = '0';
+    this.number1 = null;
+    this.operator = null;
   }
 
   resolveEqual(){
@@ -104,7 +105,7 @@ class Calculator {
   	if(this.display){
       this.display.value = value;
   	}else{
-  	  return 'No display to update!'
+  	  console.log(value);
   	}
   }
 }
