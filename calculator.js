@@ -17,7 +17,7 @@ class Calculator {
 
   input(value) {
   	if(!this.goodInput(value)){
-      return console.log( 'bad input ' + value )
+      return 'bad input ' + value
   	}
     if( this.isOperator(value) ) {
       this.handleOperator(value);
@@ -104,8 +104,6 @@ class Calculator {
   updateDisplay(value){
   	if(this.display){
       this.display.value = value;
-  	}else{
-  	  console.log(value);
   	}
   }
 }
