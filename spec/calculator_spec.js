@@ -92,6 +92,15 @@ describe("Calculator", function() {
   	expect(calculator.calculate()).toEqual(42)
   })
 
+  it("changes operator if no second value has been added", function(){
+  	let calculator = new Calculator();
+  	calculator.input('2')
+  	calculator.input('*')
+  	calculator.input('+')
+  	calculator.input('3')
+  	expect(calculator.calculate()).toEqual(5)
+  })
+
   it("clears", function(){
   	let calculator = new Calculator();
   	calculator.input('1')

@@ -1,19 +1,18 @@
 class Calculator {
-  constructor() {
+  constructor(display) {
     this.number0 = '0';
     this.number1 = '0';
     this.operator = null;
     this.allowedNumbers = ['0', '1','2', '3', '4', '5', '6', '7', '8', '9', '.'];
     this.allowedOperators = ['c', 'C', '/','*','-','+','='];
-    this.updateDisplay('0');
+    if(display){
+      this.display = display;
+      this.updateDisplay('0');
+    }
   }
 
   get allowedCharacters(){
   	return this.allowedNumbers.concat(this.allowedOperators);
-  }
-
-  get display(){
-  	return document.querySelector('#calculator #display')
   }
 
   input(value) {
@@ -102,7 +101,11 @@ class Calculator {
   }
 
   updateDisplay(value){
-    this.display.value = value;
+  	if(this.display){
+      this.display.value = value;
+  	}else{
+  	  return 'No display to update!'
+  	}
   }
 }
 
