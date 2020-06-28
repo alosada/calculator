@@ -7,6 +7,10 @@ body {
   text-align: center;
 }
 
+#calculator {
+  text-align: center;
+}
+
 #calculator table{
   background-color: #666666;
   padding: 1em;
