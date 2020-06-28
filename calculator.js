@@ -16,15 +16,11 @@ class Calculator {
   }
 
   get number0(){
-  	return this.paramToNumber(this.param0)
+  	return Number(this.param0)
   }
 
   get number1(){
-  	return this.paramToNumber(this.param1)
-  }
-
-  paramToNumber(param){
-  	return Number(param)
+  	return Number(this.param1)
   }
 
   input(value) {
