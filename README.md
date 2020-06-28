@@ -1,5 +1,7 @@
 # calculator
 
+This calculator app was built sticking to the `Keep It Simple, Stupid` principle and kept as simple as possible. In general the best approach is to avoid fishing with dynamite and introduce complexities as needed. HTML, CSS and vanilla JavaScript (ES6) were employed for all functionality. Jasmine was employed to run unit tests on the calculator class.
+
 ## Running calculator
 
 After cloning this repository and navigating to it, simply type:
@@ -35,14 +37,6 @@ run `npm install local` to install dependencies.
 To execute test run `npx jasmine`
 
 Jasmine documentation https://github.com/jasmine/jasmine-npm
-
-
-## Philosophy
-
-This calculator app was built sticking to the KISS principle and kept as simple as possible.
-HTML, CSS and vanilla JavaScript (ES6) were employed for all functionality.
-
-Jasmine was employed to run unit tests.
 
 ## Why is 42 in all the tests?
 Because 42 is [The answer to the ultime question of life, the universe and everything](https://en.wikipedia.org/wiki/42_(number)#The_Hitchhiker's_Guide_to_the_Galaxy).
